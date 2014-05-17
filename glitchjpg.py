@@ -97,7 +97,7 @@ def savetoPNG(glitched_image):
 
 def glitchJpeg(image, amount=None, seed=None, iterations=None):
 	glitched_image = glitchJpegBytes(image, amount, seed, iterations)
-	# savetoPNG(glitched_image)
+	savetoPNG(glitched_image)
 
 if __name__ == "__main__":
 	import argparse
