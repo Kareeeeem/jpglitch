@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 import random
 import Image
@@ -12,7 +10,7 @@ def getBytes(image):
 	return bytes
 
 
-def getJpegHeaderLength(image_bytes):
+def getJpgHeaderLength(image_bytes):
 	for i in (range(len(image_bytes)-1)):
 		if (image_bytes[i] == 255) & (image_bytes[i+1] == 218):
 			result = i 			
@@ -20,7 +18,7 @@ def getJpegHeaderLength(image_bytes):
 
 	return result
 
-def glitchJpegBytes(image, amount=None, seed=None, iterations=None):
+def glitchJpgBytes(image, amount=None, seed=None, iterations=None):
 	if amount == None:
 		amount = random.randint(0,99)
 	elif amount > 99:
@@ -48,7 +46,7 @@ def glitchJpegBytes(image, amount=None, seed=None, iterations=None):
 	seed = float(seed)/100
 
 	bytes = getBytes(image)
-	headerlength = getJpegHeaderLength(bytes)
+	headerlength = getJpgHeaderLength(bytes)
 
 	for i in (range(iterations)):
 		max_index = len(bytes) - headerlength - 4
@@ -89,14 +87,14 @@ def savetoPNG(glitched_image):
 			print 'oops'
 			parameters['iterations'] -= 1
 			second_attempt = (
-				glitchJpegBytes(old_image, 
+				glitchJpgBytes(old_image, 
 				amount=parameters['amount'], 
 				seed=parameters['seed'],
 				iterations=(parameters['iterations'])))
 			image = second_attempt[0]
 
-def glitchJpeg(image, amount=None, seed=None, iterations=None):
-	glitched_image = glitchJpegBytes(image, amount, seed, iterations)
+def glitchJpg(image, amount=None, seed=None, iterations=None):
+	glitched_image = glitchJpgBytes(image, amount, seed, iterations)
 	savetoPNG(glitched_image)
 
 if __name__ == "__main__":
@@ -112,5 +110,5 @@ if __name__ == "__main__":
 		help="how many times over do you want to glitch the image. must be between 0 and 110")
 	args = parser.parse_args()
 
-	glitchJpeg(args.jpg, amount=args.a, seed=args.s, iterations=args.i)
+	glitchJpg(args.jpg, amount=args.a, seed=args.s, iterations=args.i)
 	
