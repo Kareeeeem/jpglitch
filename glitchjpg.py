@@ -9,7 +9,6 @@ def getBytes(image):
 	
 	return bytes
 
-
 def getJpgHeaderLength(image_bytes):
 	for i in (range(len(image_bytes)-1)):
 		if (image_bytes[i] == 255) & (image_bytes[i+1] == 218):
