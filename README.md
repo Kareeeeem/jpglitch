@@ -14,18 +14,12 @@ python jpglitch.py image.jpg
 ``
 
 There are a few optional parameters
-1.-a, --amount: This determines the hex value that is used to overwrite original
-values in the image data. Value from 1 to 99
-1.-s --seed: This determines where in the image data the script starts overwriting
-data. Value from 1 to 99
-1.-i, --iterations: This determines how many times the script overwrites data. Value
-from 1-115
-1.--jpg: Normally the script will output to .png for stablity. We're pretty
-much corrupting files and unstabe jpegs are rendered differently by different
-platforms/browsers. Png is more stable, but you might want to keep doing stuff
-to it so use this if you want a jpeg.
-1.-o, --output: Specify the output filename. Defaults to
-originalname_glitched.extension
+
+1. -a, --amount: This determines the hex value that is used to overwrite original values in the image data. Value from 1 to 99
+1. -s --seed: This determines where in the image data the script starts overwriting data. Value from 1 to 99
+1. -i, --iterations: This determines how many times the script overwrites data. Value from 1-115
+1. --jpg: Normally the script will output to .png for stablity. We're pretty much corrupting files and unstabe jpegs are rendered differently by different platforms/browsers. Png is more stable, but you might want to keep doing stuff to it so use this if you want a jpeg.
+1. -o, --output: Specify the output filename. Defaults to originalname_glitched.extension
 
 When the optional parameters are not given it generates random values in the
 allowed ranges. This is closer to the original purpose. Glitches are
