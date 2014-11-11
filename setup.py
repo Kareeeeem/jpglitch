@@ -2,9 +2,9 @@ from setuptools import setup
 
 
 setup(
-    name='jpeglitch',
+    name='jpglitch',
     version='0.2',
-    py_modules=['jpeglitch'],
+    py_modules=['jpglitch'],
     install_requires=[
         'Click',
         'Pillow',
