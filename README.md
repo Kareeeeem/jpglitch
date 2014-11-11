@@ -10,7 +10,7 @@ https://github.com/snorpey/glitch-canvas/
 
 ##Usage
 ``
-python jpglitch.py image.jpg
+python jpglitch.py input.jpg
 ``
 
 There are a few optional parameters
@@ -26,7 +26,7 @@ allowed ranges. This is closer to the original purpose. Glitches are
 technically not engineered but they just happen. 
 
 ``
-python jpglitch.py image.jpg -a 70 -s 4 -i 31
+python jpglitch.py -a 70 -s 4 -i 31 --jpg -o garbled_mess.jpg input.jpg 
 ``
 
 ##Example
