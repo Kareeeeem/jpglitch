@@ -8,6 +8,12 @@ info. http://pillow.readthedocs.org/en/latest/original-readme.html
 It uses elements of this javascript implementation.
 https://github.com/snorpey/glitch-canvas/
 
+
+##Installation
+You should install it in a virtualenv by running `pip install
+git+https://github.com/Kareeeeem/jpglitch` or by cloning the repo and running
+`python setup.py install`.
+
 ##Usage
 ``
 python jpglitch.py input.jpg
