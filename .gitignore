@@ -1,2 +1,4 @@
 *.swp
-*.rope*
+*.png
+*.jpg
+venv/*
