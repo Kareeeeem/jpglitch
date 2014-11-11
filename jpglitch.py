@@ -114,7 +114,10 @@ def cli(image, amount, seed, iterations, jpg, output):
         click.echo(message=key + ': ' + str(value))
 
     if output:
-        name = output
+        # TODO
+        # make the extension here count as guide for what to save the file as
+        # for now just ignore it if it's given
+        name = output.rsplit('.')[0]
     else:
         name = image.name.rsplit('.')[0] + "_glitched"
 

@@ -1,9 +1,9 @@
 #jpglitch
 
-A command line tool to create glitchart from jp[e]g's. The script will save the
-glitched *image.jpg* as *image_glitched.png*. The reason to save the result as
-png is for stability and to make sure the result looks the same on different
-platforms. 
+A command line tool to create glitchart from jp[e]g's. The script will save the glitched *image.jpg* as *image_glitched.png* bby default. The reason to save the result as png is for stability so the result looks the same on different platforms. 
+
+It requires **zlib** and **libjpeg**. Refer to the original PIL readme for more
+info. http://pillow.readthedocs.org/en/latest/original-readme.html
 
 It uses elements of this javascript implementation.
 https://github.com/snorpey/glitch-canvas/
