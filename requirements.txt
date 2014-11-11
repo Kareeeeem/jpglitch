@@ -1,5 +1,4 @@
 Pillow==2.6.1
 argparse==1.2.1
 click==3.3
--e git+https://github.com/Kareeeeem/jpglitch.git@32cfe9f5e975ec45c488d5637d12630cb0a3d8ed#egg=jpeglitch-rewrite
 wsgiref==0.1.2
