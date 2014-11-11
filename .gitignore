@@ -1,4 +1,7 @@
 *.swp
 *.png
 *.jpg
+*.jpeg
+*.pyc
 venv/*
+*.egg-info/*

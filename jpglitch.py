@@ -97,15 +97,15 @@ class Jpeg(object):
               default=random.randint(0, 99), help="Insert high or low values?")
 @click.option('--seed', '-s', type=click.IntRange(0, 99, clamp=True),
               default=random.randint(0, 99), help="Begin glitching at the\
-                      start on a bit later on")
+                      start on a bit later on.")
 @click.option('--iterations', '-i', type=click.IntRange(0, 115, clamp=True),
               default=random.randint(0, 115), help="How many values should\
-                      get replaced")
+                      get replaced.")
 @click.option('--jpg', is_flag=True, help="Output to jpg instead of png.\
                       Note that png is more stable")
-@click.option('--output', '-o')
+@click.option('--output', '-o', help="What to call your glitched file.")
 @click.argument('image', type=click.File('rb'))
-def cli(image, amount, seed, iterations, jpg):
+def cli(image, amount, seed, iterations, jpg, output):
     image_bytes = bytearray(image.read())
     jpeg = Jpeg(image_bytes, amount, seed, iterations)
 
@@ -113,8 +113,13 @@ def cli(image, amount, seed, iterations, jpg):
     for key, value in jpeg.parameters.iteritems():
         click.echo(message=key + ': ' + str(value))
 
-    name = image.name.rsplit('.')[0] + "_glitched%s" % ('.jpg' if jpg
-                                                        else '.png')
+    if output:
+        name = output
+    else:
+        name = image.name.rsplit('.')[0] + "_glitched"
+
+    name += '%s' % ('.jpg' if jpg else '.png')
+
     jpeg.save_image(name)
 
     output = "\nSucces! Checkout %s." % name
