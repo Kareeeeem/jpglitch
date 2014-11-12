@@ -3,7 +3,19 @@ import copy
 import random
 import click
 
+from itertools import tee, izip
 from PIL import Image
+
+
+def pairwise(iterable):
+    def pairwise(iterable):
+        """Awesome function from the itertools cookbook
+        https://docs.python.org/2/library/itertools.html
+        s -> (s0,s1), (s1,s2), (s2, s3), ...
+        """
+        a, b = tee(iterable)
+        next(b, None)
+        return izip(a, b)
 
 
 class Jpeg(object):
@@ -11,7 +23,11 @@ class Jpeg(object):
     def __init__(self, image_bytes, amount, seed, iterations):
         self.bytes = image_bytes
         self.new_bytes = None
-        self.header_length = self.get_header_length()
+        try:
+            self.header_length = self.get_header_length()
+        except ValueError as e:
+            click.fail(e.message)
+
         self.parameters = {
             'amount': amount,
             'seed': seed,
@@ -26,12 +42,12 @@ class Jpeg(object):
         us a little leeway. We don't want to mess with the header.
         """
 
-        for i in (xrange(len(self.bytes)-1)):
-            if (self.bytes[i] == 255) & (self.bytes[i+1] == 218):
+        for i, pair in enumerate(pairwise(self.bytes)):
+            if pair[0] == 255 and pair[1] == 218:
                 result = i + 2
-                break
+                return result
 
-        return result
+        raise ValueError('Not a valid jpg!')
 
     def glitch_bytes(self):
         """Glitch the image bytes, after the header based on the parameters.
@@ -86,8 +102,11 @@ class Jpeg(object):
                 stream = io.BytesIO(self.new_bytes)
                 im = Image.open(stream)
                 im.save(name)
-                break
+                return
             except IOError:
+                if self.parameters['iterations'] == 0:
+                    click.fail('This image is beyond repair, maybe try again?')
+
                 self.parameters['iterations'] -= 1
                 self.glitch_bytes()
 
