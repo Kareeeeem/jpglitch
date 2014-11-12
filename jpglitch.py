@@ -8,14 +8,13 @@ from PIL import Image
 
 
 def pairwise(iterable):
-    def pairwise(iterable):
-        """Awesome function from the itertools cookbook
-        https://docs.python.org/2/library/itertools.html
-        s -> (s0,s1), (s1,s2), (s2, s3), ...
-        """
-        a, b = tee(iterable)
-        next(b, None)
-        return izip(a, b)
+    """Awesome function from the itertools cookbook
+    https://docs.python.org/2/library/itertools.html
+    s -> (s0,s1), (s1,s2), (s2, s3), ...
+    """
+    a, b = tee(iterable)
+    next(b, None)
+    return izip(a, b)
 
 
 class Jpeg(object):
@@ -26,7 +25,7 @@ class Jpeg(object):
         try:
             self.header_length = self.get_header_length()
         except ValueError as e:
-            click.fail(e.message)
+            raise click.BadParameter(message=e.message)
 
         self.parameters = {
             'amount': amount,
@@ -104,8 +103,9 @@ class Jpeg(object):
                 im.save(name)
                 return
             except IOError:
-                if self.parameters['iterations'] == 0:
-                    click.fail('This image is beyond repair, maybe try again?')
+                if self.parameters['iterations'] == 1:
+                    raise click.BadParameter(message='This image is beyond\
+                            repair, maybe try again?', param_hint=['image'])
 
                 self.parameters['iterations'] -= 1
                 self.glitch_bytes()
