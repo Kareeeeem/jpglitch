@@ -1,4 +1,4 @@
-#jpglitch
+# jpglitch
 
 A command line tool to create glitchart from jp[e]g's. The script will save the glitched *image.jpg* as *image_glitched.png* bby default. The reason to save the result as png is for stability so the result looks the same on different platforms. 
 
@@ -9,12 +9,13 @@ It uses elements of this javascript implementation.
 https://github.com/snorpey/glitch-canvas/
 
 
-##Installation
+## Installation
 You should install it in a virtualenv by running `pip install
 git+https://github.com/Kareeeeem/jpglitch` or by cloning the repo and running
 `python setup.py install`.
 
-##Usage
+## Usage
+
 ``
 python jpglitch.py input.jpg
 ``
@@ -35,5 +36,6 @@ technically not engineered but they just happen.
 python jpglitch.py -a 70 -s 4 -i 31 --jpg -o garbled_mess.jpg input.jpg 
 ``
 
-##Example
+## Example
+
 ![alt text](http://imgur.com/bUvNMaQ.jpg "example")`
